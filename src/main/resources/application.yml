@@ -14,7 +14,7 @@ spring:
     url: jdbc:oracle:thin:@202.51.189.217:1521/gisdb
     username: drug_gis
     password: onTheRoad2trAck$
-#   
+# alif vai provide this ip= 127.0.0.1 
 #live database  
 #    url: jdbc:oracle:thin:@192.168.8.233:1521:gisdb
 #    username: drug_gis

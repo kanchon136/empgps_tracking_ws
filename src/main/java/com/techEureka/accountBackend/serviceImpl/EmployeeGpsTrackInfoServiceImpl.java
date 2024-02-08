@@ -89,7 +89,7 @@ public class EmployeeGpsTrackInfoServiceImpl implements EmployeeGpsTrackInfoServ
 		return empGpsTrackinfoCustomRepository.findAllEmpgpsTrackInfos().parallelStream()
 				.filter(f -> f.getMkgProfNo() != null && f.getGpsDataDate() != null)
 				.filter(e -> toLacalDate(formatedDate(e.getGpsDataDate())).equals(toLacalDate(stringToDate(gpsDate)))
-						&& e.getMkgProfNo().equalsIgnoreCase(empno)).toList();
+				 && e.getMkgProfNo().equalsIgnoreCase(empno)).sorted(Comparator.comparing(EmployeeGpsTrackInfo::getGpsDataTime)).toList();
 	}
 	private static LocalTime convertToTime(String time) {
 		DateTimeFormatter formater = DateTimeFormatter.ofPattern("hh:mm a");

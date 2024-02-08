@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import com.techEureka.accountBackend.repository.EmpGpsTrackinfoCustomRepository;
 import com.techEureka.accountBackend.service.EmployeeGpsTrackInfoService;
 
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/empTrackInfo")
@@ -35,13 +37,17 @@ public class EmpGpsTrackInfoController {
 @GetMapping("/allEmpGpsTrackInfos")
 public ResponseEntity<List<EmployeeGpsTrackInfo>> findAllEmployeeTracInfos() {
 		try {
-		return new ResponseEntity<List<EmployeeGpsTrackInfo>>(
-		employeeGpsTrackInfoService.findAllEmployeeGpsTrackInfos(), HttpStatus.OK);
+			Long starttime = System.currentTimeMillis();
+			List<EmployeeGpsTrackInfo> list = employeeGpsTrackInfoService.findAllEmployeeGpsTrackInfos();
+			Long enttime = System.currentTimeMillis();
+			System.out.println("Regular Way===Total Time===:"+(enttime-starttime));
+		return new ResponseEntity<List<EmployeeGpsTrackInfo>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 		log.error(e.getMessage());
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
+
 
 @GetMapping("/findAllTrackInfosByEmpNo/{empno}")
 public ResponseEntity<List<EmployeeGpsTrackInfo>> findAllTrackInofsByEmpNo(@PathVariable("empno") String empno) {
