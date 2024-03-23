@@ -17,6 +17,7 @@ E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accou
 E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accountBackend\entity\UsersRole.java
 E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accountBackend\repository\EmpGpsTrackinfoCustomRepository.java
 E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accountBackend\repository\HrvDesignationInfoCustomRepository.java
+E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accountBackend\entity\BovEmpParentAndChildInfo.java
 E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accountBackend\controller\EmpGpsTrackInfoController.java
 E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accountBackend\serviceImpl\HrvDesignationInfoServiceImpl.java
 E:\personal_project_workplace\empgps_tracking\src\main\java\com\techEureka\accountBackend\entity\HrvDesignationInfo.java

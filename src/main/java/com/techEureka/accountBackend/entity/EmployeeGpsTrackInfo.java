@@ -33,5 +33,7 @@ public class EmployeeGpsTrackInfo implements Serializable {
 	private String locsharType;
 	private String toolTipTxt;
 	private String profPhoto;
+	
+	//private String  ss;
 
 }

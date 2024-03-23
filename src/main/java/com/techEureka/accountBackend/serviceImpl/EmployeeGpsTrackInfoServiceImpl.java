@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -158,7 +159,7 @@ public class EmployeeGpsTrackInfoServiceImpl implements EmployeeGpsTrackInfoServ
 			return empByDesiglist;
 		}
 	}
-
+//kk
 	@Override
 	public List<?> findAllGpsTrackinfosByDesignation(String designation) {
 		List<BovEmployeeInfo> bovemplistBydesignation = bovEmployeeInfoCustomRepository.findAllBovEmployeeInfos().parallelStream()
@@ -179,4 +180,45 @@ public class EmployeeGpsTrackInfoServiceImpl implements EmployeeGpsTrackInfoServ
 				.filter(e-> e.getGpsDataTime() != null && isTimeWithinRange(convertToTime(e.getGpsDataTime()), starttime, endtime))
 				.toList();
 	}
+
+	@Override
+	public Optional<EmployeeGpsTrackInfo> findEmpGpsInfoByMkgNoAndDataTime(String emoNo, String dataTime) {
+		 
+		return empGpsTrackinfoCustomRepository.findAllEmpgpsTrackInfos().parallelStream()
+				.filter(f-> f.getMkgProfNo() != null && f.getGpsDataTime() != null && f.getMkgProfNo().equalsIgnoreCase(emoNo)
+				&& f.getGpsDataTime().equalsIgnoreCase(dataTime)).findFirst();
+	}
+
+	@Override
+	public List<?> findEmpGpsInfosByDesigAndMkgprofEqualsMkzmCode(String designo,String mkgPfofNo) {	
+		return  bovEmployeeInfoCustomRepository.  findAllBovEmpInfosUnderDynamicDesigCode(mkgPfofNo);
+	}
+	
+//	List<BovEmployeeInfo> bovEmpInfos = bovEmployeeInfoCustomRepository.findAllBovEmployeeInfos();
+//		 
+//	return bovEmpInfos.stream()
+//	                .filter(f -> f.getMkgProfNo() != null && f.getMkgProfNo().equals(mkgPfofNo))
+//	                .flatMap(e -> Stream.concat(Stream.of(e), getEmployees(bovEmpInfos, e.getMkgProfNo()).stream()))
+//	                .collect(Collectors.toList());
+//		
+////		if (designo.equals("ZM")) {	
+////			return bovEmployeeInfoCustomRepository.findAllBovEmployeeInfos().parallelStream()
+////					.filter( f-> f.getMkZmCode()!= null && mkgPfofNo.equals(f.getMkZmCode())).toList();
+////	 
+////				 
+////		} else {
+////			return null;
+////		}
+		 
+	//}
+
+	
+public static List<BovEmployeeInfo> getEmployees(List<BovEmployeeInfo> employees, String startMkgprofNo) {
+        return employees.stream()
+                .filter(e -> e.getMkgProfNo()!=null && e.getMkgProfNo().equals(startMkgprofNo))
+                .flatMap(e -> Stream.concat(Stream.of(e), getEmployees(employees, e.getMkgProfNo()).stream()))
+                .collect(Collectors.toList());
+    }
+	
+	
 }

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.techEureka.accountBackend.entity.BovEmpParentAndChildInfo;
 import com.techEureka.accountBackend.entity.BovEmployeeInfo;
 import com.techEureka.accountBackend.repository.BovEmployeeInfoCustomRepository;
 import com.techEureka.accountBackend.service.BovEmployeeInfoService;
@@ -98,6 +100,37 @@ private static final Logger log = LogManager.getLogger(BovEmployeeInfoServiceimp
 			log.error(e.getMessage());
 		}
 		return convertedParameterDate;
+	}
+
+	@Override
+	public List<BovEmpParentAndChildInfo> findBovEmpChildThenParentInfos(String ptgProfNo) {
+		 
+		List<BovEmpParentAndChildInfo> bovchileAndParentInfos = new ArrayList<>();
+		
+		BovEmployeeInfo childInfo= new BovEmployeeInfo();
+		BovEmployeeInfo parentInfo = new BovEmployeeInfo();
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<BovEmployeeInfo> findAllBovEmpInfosParentAndChildByPtgprofNo(String ptgProf) {
+		// TODO Auto-generated method stub
+		return bovEmployeeInfoCustomRepository.findAllBovEmpInfosParentAndChildByPtgprofNo(ptgProf);
+	}
+
+	@Override
+	public BovEmpParentAndChildInfo findForTesing(String mkgprofNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BovEmployeeInfo> findAllBovEmpInfosBymkgProfNoEqualsAccordingToDesigUniqField(String desigNo,
+			List<BovEmployeeInfo> bovEmpInfos) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 
 }

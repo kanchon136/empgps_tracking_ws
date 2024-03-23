@@ -38,6 +38,7 @@ com\techEureka\accountBackend\utils\BaseResponse.class
 com\techEureka\accountBackend\entity\EmployeeGpsTrackInfo.class
 com\techEureka\accountBackend\service\BovEmployeeInfoService.class
 com\techEureka\accountBackend\controller\TestingKanchon.class
+com\techEureka\accountBackend\entity\BovEmpParentAndChildInfo.class
 com\techEureka\accountBackend\entity\HrvDesignationInfo.class
 com\techEureka\accountBackend\repository\UsersRoleRepo.class
 com\techEureka\accountBackend\model\UpdateUserInfoModel.class

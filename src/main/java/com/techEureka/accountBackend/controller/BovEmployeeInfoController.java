@@ -66,5 +66,14 @@ public class BovEmployeeInfoController {
 		}
 	}
 	
+	@GetMapping("/findAllBovEmpInfosParentAndChildByPtgprofNo/{ptgProfNo}")
+	public ResponseEntity<?> findAllByPtgProfParentAndChild(@PathVariable String ptgProfNo){
+		try {
+		return new ResponseEntity<>(bovEmployeeInfoService.findAllBovEmpInfosParentAndChildByPtgprofNo(ptgProfNo),HttpStatus.OK)	;
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR) ;
+		}
+	}
+	
 
 }

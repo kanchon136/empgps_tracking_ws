@@ -25,5 +25,7 @@ public interface EmployeeGpsTrackInfoService {
 	List<?> findAllGpsTrackinfosByDesignation(String designation);
 	
 	List<EmployeeGpsTrackInfo> findAllTrackinfosByBetweenTime(LocalTime starttime , LocalTime endtime);
-
+    
+	Optional<EmployeeGpsTrackInfo> findEmpGpsInfoByMkgNoAndDataTime(String emoNo, String dataTime);
+	List<?> findEmpGpsInfosByDesigAndMkgprofEqualsMkzmCode(String designo,String mkgPfofNo);
 }

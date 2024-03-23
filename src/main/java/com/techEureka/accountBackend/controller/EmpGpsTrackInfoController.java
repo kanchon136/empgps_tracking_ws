@@ -123,7 +123,7 @@ public ResponseEntity<?> findAllEmpGpstrackinfosByDateOrDesigOrDateAndDesig(
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
-	
+//kk	
 @GetMapping("/findAllEmpgpstrackinfosByDesigNo/{DesigNo}")
 public ResponseEntity<?> findAllEmpgpstrackinfosByDesigNo(@PathVariable("DesigNo") String DesigNo){
 		try {
@@ -134,6 +134,18 @@ public ResponseEntity<?> findAllEmpgpstrackinfosByDesigNo(@PathVariable("DesigNo
 		}
 		
 	}
+
+
+@GetMapping("/findEmpGpsInfosByDesigAndMkgprofEqualsMkzmCode/{DesigNo}/{mkgPfofNo}")
+public ResponseEntity<?> findEmpGpsInfosByDesigAndMkgprofEqualsMkzmCode(@PathVariable("DesigNo") String DesigNo,@PathVariable("mkgPfofNo") String mkgPfofNo){
+	try {
+		return new ResponseEntity<>(employeeGpsTrackInfoService.findEmpGpsInfosByDesigAndMkgprofEqualsMkzmCode(DesigNo,mkgPfofNo),HttpStatus.OK);
+	} catch (Exception e) {
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+				
+	}
+	
+}
 
 @GetMapping("/findAllTrackInfosByBetweenTimeNotUse")
 public ResponseEntity<?> findAllTrackInfosByBetweenTime(@RequestParam("startTime") @DateTimeFormat(pattern = "hh:mm a") LocalTime startTime,
@@ -160,6 +172,20 @@ public ResponseEntity<?> findAllTrackInfosByBetweenTimenew(@RequestParam("startT
 	}
 }	
 
+@GetMapping("/findEmpTrackInfoByMkgnoAndTime")
+public ResponseEntity<?> findEmpTrackInfoByMkgnoAndTime(@RequestParam(name = "empNo")String empNo,@RequestParam(name="time") String time){
+	try {
+		return new ResponseEntity<>(employeeGpsTrackInfoService.findEmpGpsInfoByMkgNoAndDataTime(empNo, time),HttpStatus.OK);
+	} catch (Exception e) {
+		log.error("findEmpTrackInfoByMkgnoAndTime"+e);
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}
+
+
+
+
+
 private static LocalTime convertStringTo12HMlocalTime(String timeString) {
     DateTimeFormatter formatter24Hour = DateTimeFormatter.ofPattern("HH:mm");
     LocalTime localTime24Hour = LocalTime.parse(timeString, formatter24Hour);
@@ -168,4 +194,11 @@ private static LocalTime convertStringTo12HMlocalTime(String timeString) {
     return LocalTime.parse(formatted12HourString, formatter12Hour);
 }
 
+
+public static void main(String[] ar) {
+	double b= 0.1;
+	
+	b= b*3;
+	System.out.println(b);
+}
 }
